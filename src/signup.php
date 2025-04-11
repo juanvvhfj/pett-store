@@ -7,6 +7,8 @@ $lname=$_POST['l_name'];
 $email=$_POST['e_mail'];
 $passw=$_POST['p_assw'];
 
+$hashed_password=password_hash($passw,PASSWORD_DEFAULT);
+
 $sql_validate_email = "
  select 
   count (id) as total
@@ -29,7 +31,8 @@ $sql_validate_email = "
 
     $ans = pg_query($conn, $sql);
     if  ($ans) {    
-        echo "users an been created ";
+        echo "<script>alert ('user has been created . Go to login! ')</script>";
+        header('refresh:0;url=http://localhost/petstore/src/singin.html');
     } else {
         echo " error ";
     }}
